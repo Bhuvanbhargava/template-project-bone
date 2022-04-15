@@ -38,13 +38,18 @@ const AppHeader: FC = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     return (
-        <AppBar  position="fixed" color="primary" open={navCollapsed}>
+        <AppBar  position="fixed" color="primary" open={navCollapsed} >
             <Toolbar>
                 <IconButton
                     size="large"
                     edge="start"
                     color="inherit"
-                    onClick={() => dispatch(setNavCollapsed(true))}>
+                    onClick={() => dispatch(setNavCollapsed(true))}
+                    sx={{
+                        marginRight: 2,
+                        ...(navCollapsed && { display: 'none' }),
+                      }}
+                    >
                     <MenuIcon/>
                 </IconButton>
                 <Box sx={{

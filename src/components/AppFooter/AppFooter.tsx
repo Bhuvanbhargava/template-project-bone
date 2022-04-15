@@ -22,7 +22,7 @@ const AppFooter = () =>{
   return (
     <>   
       <Box component="footer"
-        sx={{mt: 'auto',backgroundColor:'#28282B' }}>
+        sx={{mt: 'auto',backgroundColor:'#28282B'  }}>
           <Toolbar>          
           <Typography variant="body2" color="text.secondary">
             Company: BOne

@@ -20,6 +20,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import { DRAWER_WIDTH } from '../../constants';
 import { IStore } from '../../store';
 import { setNavCollapsed } from '../../store/slices/appState';
+import DrawerHeader from '../Common/DrawerHeader';
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: DRAWER_WIDTH,
@@ -41,16 +42,6 @@ const closedMixin = (theme: Theme): CSSObject => ({
     width: `calc(${theme.spacing(8)} + 1px)`,
   },
 });
-
-const DrawerHeader = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'flex-end',
-  padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
-}));
-
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({

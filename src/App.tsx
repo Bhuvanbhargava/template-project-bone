@@ -1,10 +1,11 @@
 import React from 'react';
-import { Container, Box, Typography, ThemeProvider, createTheme, Stack, Divider } from '@mui/material';
+import { Container, Box, Typography, ThemeProvider, createTheme, Stack, Divider, styled } from '@mui/material';
 import AppHeader from './components/AppHeader'
 import AppFooter from './components/AppFooter'
 import AppNavigation from './components/AppNavigation'
 import styles from "./App.module.scss"
 import CssBaseline from '@mui/material/CssBaseline';
+import DrawerHeader from './components/Common/DrawerHeader';
 
 const darkTheme = createTheme({
   palette: {
@@ -20,26 +21,34 @@ const lightTheme = createTheme({
   },
 });
 const darkMode = true;
+
 const App = () => {
-  return (
-    <Box sx={{
-      display: 'flex',
-      flexDirection: 'column',
-      minHeight: '100vh',
-    }}>
-      <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-        <CssBaseline />
+  return (  
+    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+      <CssBaseline />
+      <Box sx={{ display: 'flex', minHeight: '100vh'  }}>
         <AppHeader />
         <AppNavigation />
-        <Container component="main">
-          <Typography variant="h5" component="h2">
-           Main Content Area
-          </Typography>        
-          
-        </Container>
-        <AppFooter />
-      </ThemeProvider>
-    </Box>
+        <Box component="main" sx={{ flexGrow: 1, p: 2}}>
+          <DrawerHeader />
+          <Typography paragraph>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
+            enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
+            imperdiet. Semper risus in hendrerit gravida rutrum quisque non tellus.
+            Convallis convallis tellus id interdum velit laoreet id donec ultrices.
+            Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
+            adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra
+            nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum
+            leo. Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis
+            feugiat vivamus at augue. At augue eget arcu dictum varius duis at
+            consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
+            sapien faucibus et molestie ac.
+          </Typography>          
+        </Box>      
+        <AppFooter />      
+      </Box>
+    </ThemeProvider>
   );
 }
 
