@@ -1,55 +1,58 @@
-import React from 'react';
-import { Container, Box, Typography, ThemeProvider, createTheme, Stack, Divider, styled } from '@mui/material';
-import AppHeader from './components/AppHeader'
-import AppFooter from './components/AppFooter'
-import AppNavigation from './components/AppNavigation'
-import styles from "./App.module.scss"
-import CssBaseline from '@mui/material/CssBaseline';
-import DrawerHeader from './components/Common/DrawerHeader';
+import React from "react";
+import {
+  Container,
+  Box,
+  Typography,
+  ThemeProvider,
+  createTheme,
+  Stack,
+  Divider,
+  styled,
+} from "@mui/material";
+import AppHeader from "./components/AppHeader";
+import AppFooter from "./components/AppFooter";
+import AppNavigation from "./components/AppNavigation";
+import styles from "./App.module.scss";
+import CssBaseline from "@mui/material/CssBaseline";
+import DrawerHeader from "./components/Common/DrawerHeader";
+import Home from "./screens/Home/Home";
+import AppContainer from "./components/AppContainer";
 
 const darkTheme = createTheme({
   palette: {
-    mode: 'dark',
+    mode: "dark",
     primary: {
-      main: '#1976d2',
+      main: "#1976d2",
     },
   },
 });
 const lightTheme = createTheme({
   palette: {
-    mode: 'light',
+    mode: "light",
   },
 });
 const darkMode = true;
 
 const App = () => {
-  return (  
+  return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <CssBaseline />
-      <Box sx={{ display: 'flex', minHeight: '100vh'  }}>
+      <Box
+        sx={{
+          display: "flex",
+          minHeight: "100vh",
+          //flexDirection: "column",
+        }}
+      >
         <AppHeader />
         <AppNavigation />
-        <Box component="main" sx={{ flexGrow: 1, p: 2}}>
-          <DrawerHeader />
-          <Typography paragraph>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
-            enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
-            imperdiet. Semper risus in hendrerit gravida rutrum quisque non tellus.
-            Convallis convallis tellus id interdum velit laoreet id donec ultrices.
-            Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-            adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra
-            nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum
-            leo. Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis
-            feugiat vivamus at augue. At augue eget arcu dictum varius duis at
-            consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
-            sapien faucibus et molestie ac.
-          </Typography>          
-        </Box>      
-        <AppFooter />      
+        <AppContainer>
+          <Home />
+        </AppContainer>
+        <AppFooter />
       </Box>
     </ThemeProvider>
   );
-}
+};
 
 export default App;
