@@ -24,7 +24,7 @@ const AppFooter = () => {
       <Box
         component="footer"
         sx={{
-          backgroundColor: "#28282B",
+          backgroundColor: "background.paper",
           position: "fixed",
           left: 0,
           bottom: 0,
