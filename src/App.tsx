@@ -1,22 +1,13 @@
 import React from "react";
-import {
-  Container,
-  Box,
-  Typography,
-  ThemeProvider,
-  createTheme,
-  Stack,
-  Divider,
-  styled,
-} from "@mui/material";
+import { Box, ThemeProvider, createTheme } from "@mui/material";
 import AppHeader from "./components/AppHeader";
 import AppFooter from "./components/AppFooter";
 import AppNavigation from "./components/AppNavigation";
-import styles from "./App.module.scss";
 import CssBaseline from "@mui/material/CssBaseline";
-import DrawerHeader from "./components/Common/DrawerHeader";
 import Home from "./screens/Home/Home";
 import AppContainer from "./components/AppContainer";
+import { useSelector } from "react-redux";
+import { IStore } from "./store";
 
 const darkTheme = createTheme({
   palette: {
@@ -31,9 +22,10 @@ const lightTheme = createTheme({
     mode: "light",
   },
 });
-const darkMode = true;
+//const darkMode = true;
 
 const App = () => {
+  const darkMode = useSelector((state: IStore) => state.appState.darkTheme);
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <CssBaseline />
@@ -41,7 +33,6 @@ const App = () => {
         sx={{
           display: "flex",
           minHeight: "100vh",
-          //flexDirection: "column",
         }}
       >
         <AppHeader />

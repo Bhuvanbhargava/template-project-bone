@@ -7,18 +7,17 @@ import {
   Typography,
   Badge,
   Avatar,
-  styled,
   AppBar,
+  useTheme,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import styles from "./AppHeader.module.scss";
 import { useNavigate } from "react-router-dom";
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
-import { DRAWER_WIDTH } from "../../constants";
-import { setNavCollapsed } from "../../store/slices/appState";
+import { setNavCollapsed, toggleTheme } from "../../store/slices/appState";
 import { useDispatch, useSelector } from "react-redux";
 import { IStore } from "../../store";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
 
 // const AppBar = styled(MuiAppBar, {
 //   shouldForwardProp: (prop) => prop !== "open",
@@ -43,9 +42,11 @@ import { IStore } from "../../store";
 // }
 
 const AppHeader: FC = () => {
+  const theme = useTheme();
   const navCollapsed = useSelector(
     (state: IStore) => state.appState.navCollapsed
   );
+  const darkTheme = useSelector((state: IStore) => state.appState.darkTheme);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   return (
@@ -86,6 +87,18 @@ const AppHeader: FC = () => {
         </Box>
         <Box sx={{ flexGrow: 1 }} />
         <Box sx={{ display: { xs: "none", md: "flex" } }}>
+          <IconButton
+            sx={{ ml: 1 }}
+            onClick={() => dispatch(toggleTheme(!darkTheme))}
+            color="inherit"
+            title="Toggle Theme"
+          >
+            {theme.palette.mode === "dark" ? (
+              <Brightness7Icon />
+            ) : (
+              <Brightness4Icon />
+            )}
+          </IconButton>
           <IconButton
             size="large"
             aria-label="show 17 new notifications"

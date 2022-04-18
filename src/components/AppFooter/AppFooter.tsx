@@ -1,9 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import { Typography, AppBar, Toolbar } from "@mui/material";
-import Container from "@mui/material/Container";
+import { Typography, Toolbar } from "@mui/material";
 import Link from "@mui/material/Link";
-import styles from "./AppFooter.module.scss";
 
 function Copyright() {
   return (

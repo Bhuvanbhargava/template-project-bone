@@ -1,21 +1,22 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IStore } from '../index';
-
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IStore } from "../index";
 
 export interface IAppState {
-  navCollapsed: boolean;  
+  navCollapsed: boolean;
   currentPath: string;
   masked: boolean;
+  darkTheme: boolean;
 }
 
 export const initialState: IAppState = {
   navCollapsed: false,
-  currentPath: '/',
+  currentPath: "/",
   masked: false,
+  darkTheme: false,
 };
 
 export const appState = createSlice({
-  name: 'appState',
+  name: "appState",
   initialState,
   reducers: {
     setCurrentPath: (state: IAppState, action: PayloadAction<string>) => {
@@ -27,10 +28,14 @@ export const appState = createSlice({
     setMasked: (state: IAppState, action: PayloadAction<boolean>) => {
       state.masked = action.payload;
     },
+    toggleTheme: (state: IAppState, action: PayloadAction<boolean>) => {
+      state.darkTheme = action.payload;
+    },
   },
 });
 
-export const { setCurrentPath, setMasked, setNavCollapsed } = appState.actions;
+export const { setCurrentPath, setMasked, setNavCollapsed, toggleTheme } =
+  appState.actions;
 
 /* Ignore selectors in test coverage report due to simplicity */
 /* istanbul ignore next */

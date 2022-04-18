@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import React from "react";
 import DrawerHeader from "../Common/DrawerHeader";
+import styles from "./AppContainer.module.scss";
 const AppContainer = (props: {
   children:
     | boolean
@@ -11,7 +12,15 @@ const AppContainer = (props: {
     | undefined;
 }) => {
   return (
-    <Box component="main" sx={{ flexGrow: 1, p: 2 }}>
+    <Box
+      className={styles.AppContainer}
+      component="main"
+      sx={{
+        flexGrow: 1,
+        p: 2,
+        overflow: "auto",
+      }}
+    >
       <DrawerHeader />
       {props.children}
       <DrawerHeader />

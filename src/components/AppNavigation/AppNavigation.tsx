@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
-import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
 import { useDispatch, useSelector } from "react-redux";
-import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
-import CssBaseline from "@mui/material/CssBaseline";
-import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -90,7 +85,6 @@ const AppNavigation = () => {
         </IconButton>
       </DrawerHeader>
       <Divider />
-
       <Stack
         direction={"column"}
         spacing={1}
@@ -241,7 +235,6 @@ const AppNavigation = () => {
           ))}
         </List>
       </Stack>
-
       <DrawerHeader />
     </Drawer>
   );
