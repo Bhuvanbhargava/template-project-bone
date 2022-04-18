@@ -22,7 +22,6 @@ const lightTheme = createTheme({
     mode: "light",
   },
 });
-//const darkMode = true;
 
 const App = () => {
   const darkMode = useSelector((state: IStore) => state.appState.darkTheme);
@@ -36,7 +35,7 @@ const App = () => {
         }}
       >
         <AppHeader />
-        <AppNavigation />
+        {/* <AppNavigation /> */}
         <AppContainer>
           <Home />
         </AppContainer>
