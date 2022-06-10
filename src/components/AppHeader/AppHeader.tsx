@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import appIcon from "../../assets/applogo.png";
+import MenuBookTwoToneIcon from "@mui/icons-material/MenuBookTwoTone";
 import {
   Toolbar,
   IconButton,
@@ -9,10 +10,12 @@ import {
   Avatar,
   AppBar,
   useTheme,
+  Icon,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useNavigate } from "react-router-dom";
+
 import { setNavCollapsed, toggleTheme } from "../../store/slices/appState";
 import { useDispatch, useSelector } from "react-redux";
 import { IStore } from "../../store";
@@ -71,19 +74,15 @@ const AppHeader: FC = () => {
         >
           <MenuIcon />
         </IconButton>
-        <Box
-          sx={{
-            height: "auto",
-            cursor: "pointer",
-          }}
-          component="img"
-          src={appIcon}
+        <Icon
+          component={MenuBookTwoToneIcon}
+          sx={{ cursor: "pointer" }}
           onClick={() => {
             navigate("/");
           }}
         />
-        <Box>
-          <Typography>My App Here</Typography>
+        <Box sx={{ p: 1 }}>
+          <Typography>Template</Typography>
         </Box>
         <Box sx={{ flexGrow: 1 }} />
         <Box sx={{ display: { xs: "none", md: "flex" } }}>

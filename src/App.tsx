@@ -35,7 +35,7 @@ const App = () => {
         }}
       >
         <AppHeader />
-        {/* <AppNavigation /> */}
+        <AppNavigation />
         <AppContainer>
           <Home />
         </AppContainer>
