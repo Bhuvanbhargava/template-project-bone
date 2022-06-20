@@ -2,6 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import { Typography, Toolbar } from "@mui/material";
 import Link from "@mui/material/Link";
+import styles from "./AppFooter.module.scss";
 
 function Copyright() {
   return (
@@ -22,6 +23,7 @@ const AppFooter = () => {
       <Box
         component="footer"
         sx={{
+          boxShadow: "5px 10px #888888",
           backgroundColor: "background.paper",
           position: "fixed",
           left: 0,
@@ -30,7 +32,7 @@ const AppFooter = () => {
           zIndex: (theme) => theme.zIndex.drawer + 1,
         }}
       >
-        <Toolbar>
+        <Toolbar className={styles.boxShadow}>
           <Typography variant="body2" color="text.secondary">
             Company: BOne
           </Typography>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, ThemeProvider, createTheme } from "@mui/material";
 import AppHeader from "./components/AppHeader";
 import AppFooter from "./components/AppFooter";
@@ -8,7 +8,11 @@ import Home from "./screens/Home/Home";
 import AppContainer from "./components/AppContainer";
 import { useSelector } from "react-redux";
 import { IStore } from "./store";
-
+import { useAuth } from "./context/AuthContext/AuthContext";
+import GoogleLogin from "react-google-login";
+import { CLIENT_ID_GOOGLE } from "./constants";
+import { gapi } from "gapi-script";
+import AppLoginButton from "./components/Login/AppLoginButton";
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
@@ -24,7 +28,19 @@ const lightTheme = createTheme({
 });
 
 const App = () => {
+  const auth = useAuth();
   const darkMode = useSelector((state: IStore) => state.appState.darkTheme);
+  // useEffect(() => {
+  //   function start() {
+  //     gapi.client.init({
+  //       clientId: CLIENT_ID_GOOGLE,
+  //       scope: "",
+  //     });
+  //   }
+
+  //   gapi.load("client:auth2", start);
+  // }, []);
+
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <CssBaseline />
@@ -36,9 +52,24 @@ const App = () => {
       >
         <AppHeader />
         <AppNavigation />
-        <AppContainer>
-          <Home />
-        </AppContainer>
+
+        {auth.loginData ? (
+          <AppContainer>
+            <Home />
+          </AppContainer>
+        ) : (
+          <div
+            style={{
+              textAlign: "center",
+              justifyContent: "center",
+              display: "flex",
+              flexDirection: "column",
+              paddingLeft: "40%",
+            }}
+          >
+            <AppLoginButton />
+          </div>
+        )}
         <AppFooter />
       </Box>
     </ThemeProvider>

@@ -21,6 +21,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { IStore } from "../../store";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
+import { useAuth } from "../../context/AuthContext/AuthContext";
 
 // const AppBar = styled(MuiAppBar, {
 //   shouldForwardProp: (prop) => prop !== "open",
@@ -46,6 +47,7 @@ import Brightness7Icon from "@mui/icons-material/Brightness7";
 
 const AppHeader: FC = () => {
   const theme = useTheme();
+  const auth = useAuth();
   const navCollapsed = useSelector(
     (state: IStore) => state.appState.navCollapsed
   );
@@ -113,7 +115,7 @@ const AppHeader: FC = () => {
             aria-label="account of current user"
             color="inherit"
           >
-            <Avatar />
+            <Avatar src={auth.loginData?.imageUrl} />
           </IconButton>
         </Box>
       </Toolbar>
