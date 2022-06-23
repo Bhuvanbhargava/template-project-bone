@@ -6,20 +6,28 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import store from "./store";
 import { AuthProvider } from "./context/AuthContext/AuthContext";
+import { PublicClientApplication } from "@azure/msal-browser";
+import { msalConfig } from "./components/Login/MicrosoftLoginButton";
+import { MsalProvider } from "@azure/msal-react";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
+const msalInstance = new PublicClientApplication(msalConfig);
 root.render(
   <React.StrictMode>
+
     <AuthProvider>
-      <Router>
-        <Provider store={store}>
-          <App />
-        </Provider>
-      </Router>
+        <MsalProvider instance={msalInstance}>
+        <Router>
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </Router>
+        </MsalProvider>
     </AuthProvider>
+
   </React.StrictMode>
 );
 

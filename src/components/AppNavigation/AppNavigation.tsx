@@ -12,7 +12,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import { CLIENT_ID_GOOGLE, DRAWER_WIDTH } from "../../constants";
+import {CLIENT_ID_GOOGLE, DRAWER_WIDTH, Google_Provider, Microsoft_Provider} from "../../constants";
 import { IStore } from "../../store";
 import { setNavCollapsed } from "../../store/slices/appState";
 import DrawerHeader from "../Common/DrawerHeader";
@@ -20,6 +20,7 @@ import { Stack } from "@mui/material";
 import { Logout } from "@mui/icons-material";
 import { useAuth } from "../../context/AuthContext/AuthContext";
 import { useGoogleLogout } from "react-google-login";
+import {useMsal} from "@azure/msal-react";
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: DRAWER_WIDTH,
@@ -60,11 +61,13 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 const AppNavigation = () => {
-  const auth = useAuth();
+  const {setLoginProvider,provider,handleLogout} = useAuth();
+  const { instance } = useMsal();
   const { signOut } = useGoogleLogout({
     clientId: CLIENT_ID_GOOGLE,
-    onLogoutSuccess: auth.handleLogout,
+    onLogoutSuccess: handleLogout,
   });
+
   const navCollapsed = useSelector(
     (state: IStore) => state.appState.navCollapsed
   );
@@ -80,6 +83,20 @@ const AppNavigation = () => {
     setOpen(false);
     dispatch(setNavCollapsed(false));
   };
+
+  const handleAppLogout = () => {
+    setLoginProvider("")
+    if(provider=== Google_Provider){
+      console.log("logout Google")
+      return signOut();
+
+    }
+    if(provider === Microsoft_Provider){
+      console.log("logout MS")
+      handleLogout();
+      return instance.logoutPopup();
+    }
+  }
 
   return (
     <Drawer variant="permanent" open={open}>
@@ -126,7 +143,7 @@ const AppNavigation = () => {
         <List>
           <ListItemButton
             key={"Logout"}
-            onClick={signOut}
+            onClick={handleAppLogout}
             sx={{
               minHeight: 48,
               justifyContent: open ? "initial" : "center",

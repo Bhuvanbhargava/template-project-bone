@@ -9,10 +9,9 @@ import AppContainer from "./components/AppContainer";
 import { useSelector } from "react-redux";
 import { IStore } from "./store";
 import { useAuth } from "./context/AuthContext/AuthContext";
-import GoogleLogin from "react-google-login";
-import { CLIENT_ID_GOOGLE } from "./constants";
-import { gapi } from "gapi-script";
-import AppLoginButton from "./components/Login/AppLoginButton";
+import GoogleLoginButton from "./components/Login/GoogleLoginButton";
+import MicrosoftLoginButton from "./components/Login/MicrosoftLoginButton";
+import FacebookLoginButton from "./components/Login/FacebookLoginButton";
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
@@ -67,7 +66,11 @@ const App = () => {
               paddingLeft: "40%",
             }}
           >
-            <AppLoginButton />
+            <>
+              <GoogleLoginButton />
+              <MicrosoftLoginButton />
+                <FacebookLoginButton/>
+            </>
           </div>
         )}
         <AppFooter />
